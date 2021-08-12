@@ -9,7 +9,9 @@ extents = Vector2( 12.268, 13.4071 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 36.6895, 38.0794 )
 
-[node name="fruta" type="RigidBody2D"]
+[node name="fruta" type="RigidBody2D" groups=[
+"fruta",
+]]
 collision_mask = 2
 gravity_scale = 2.0
 sleeping = true
@@ -35,6 +37,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 0
 one_shot = true
 autostart = true
 
@@ -45,20 +48,6 @@ collision_mask = 4
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="click_detecter"]
 shape = SubResource( 2 )
 disabled = true
-
-[node name="Button" type="Button" parent="."]
-visible = false
-margin_left = -36.0
-margin_top = -38.0
-margin_right = 38.0
-margin_bottom = 38.0
-focus_mode = 0
-shortcut_in_tooltip = false
-action_mode = 0
-enabled_focus_mode = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
