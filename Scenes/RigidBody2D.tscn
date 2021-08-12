@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/area.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,7 +6,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.268, 13.4071 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 36.6895, 38.0794 )
+
 [node name="fruta" type="RigidBody2D"]
+collision_mask = 2
 gravity_scale = 2.0
 sleeping = true
 script = ExtResource( 1 )
@@ -19,3 +23,42 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -18.0
+margin_top = -28.0
+margin_right = 22.0
+margin_bottom = -14.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="click_detecter" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="click_detecter"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = -36.0
+margin_top = -38.0
+margin_right = 38.0
+margin_bottom = 38.0
+focus_mode = 0
+shortcut_in_tooltip = false
+action_mode = 0
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -45,6 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Touhou_Station_Jam"
+run/main_scene="res://Scenes/juego.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -61,6 +62,14 @@ enabled=PoolStringArray( "res://addons/github-integration/plugin.cfg" )
 [gdnative]
 
 singletons=[ "res://git_api.gdnlib" ]
+
+[input]
+
+mouse={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [physics]
 
