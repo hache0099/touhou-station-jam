@@ -14,4 +14,33 @@ autostart = true
 [node name="spawn_point" type="Position2D" parent="."]
 position = Vector2( -28.6722, 379.945 )
 
+[node name="Label" type="Label" parent="."]
+margin_left = 482.659
+margin_top = 141.43
+margin_right = 522.659
+margin_bottom = 155.43
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 493.883
+margin_top = 51.6333
+margin_right = 533.883
+margin_bottom = 65.6333
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time_label" type="Label" parent="."]
+margin_left = 496.128
+margin_top = 89.797
+margin_right = 536.128
+margin_bottom = 103.797
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="fruta_spawner" to="." method="_on_fruta_spawner_timeout"]

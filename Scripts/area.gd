@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal tipo_fruta(fruta_)
+
 var number : int
 
 var colors = ["red", "green", "blue", "blueviolet", "orange", "yellow", "black"]
@@ -36,7 +38,7 @@ func click():
 	if Input.is_action_just_pressed("mouse"):
 		if click_rect.has_point(get_global_mouse_position()):
 			sleeping = true
-			print("mouse click" + colors[number])
+			emit_signal("tipo_fruta",number)
 			yield(get_tree().create_timer(0.5),"timeout")
 			queue_free()
 
@@ -59,9 +61,9 @@ func launch():
 	var new_max = max_force - 90 * ((angle - min_angle) / angle_range)
 	force = rand_range(min_force, new_max)
 	
-	var new_angle = 180 * float(from_left) - (angle * pow(-1,float(!from_left)))
+	var new_angle = 180 * float(from_left) - (angle)
 	
-	apply_impulse(Vector2(1,0), polar2cartesian(force, deg2rad(-new_angle)))
+	apply_impulse(Vector2(1,0), polar2cartesian(force, deg2rad(-abs(new_angle))))
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
@@ -76,7 +78,6 @@ func _on_click_detecter_input_event(viewport, event, shape_idx):
 			print("mouse click" + colors[number])
 			yield(get_tree().create_timer(0.5),"timeout")
 			queue_free()
-
 
 func _on_Button_pressed():
 	sleeping = true
