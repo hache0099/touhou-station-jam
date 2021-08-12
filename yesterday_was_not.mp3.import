@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/yesterday_was_not.mp3-026feac2c164300634096d82898feab6.mp3str"
+
+[deps]
+
+source_file="res://yesterday_was_not.mp3"
+dest_files=[ "res://.import/yesterday_was_not.mp3-026feac2c164300634096d82898feab6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
