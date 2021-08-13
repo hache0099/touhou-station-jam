@@ -78,3 +78,7 @@ func _on_resume_pressed():
 		get_tree().set_pause(false)
 		$CanvasLayer/pause.show()
 		$CanvasLayer/menu_pausa.hide()
+
+func _on_restart_pressed():
+	get_tree().set_pause(false)
+	get_tree().reload_current_scene()
