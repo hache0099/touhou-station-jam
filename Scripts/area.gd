@@ -2,7 +2,7 @@ extends RigidBody2D
 
 signal tipo_fruta(fruta_)
 
-var number : int
+var number : int = 0 setget set_number
 
 var colors = ["red", "green", "blue", "blueviolet", "orange", "yellow", "black"]
 
@@ -11,8 +11,6 @@ var max_angle : float = 45.0
 
 var min_force : float = 500.0
 var max_force : float = 700.0
-
-var start_position : Vector2 setget set_start_position
 
 var click_rect : Rect2
 
@@ -29,7 +27,7 @@ func _physics_process(delta):
 	click_rect.position = position - Vector2(36,38)
 	click()
 	$Label.set_text(str(number))
-	$Sprite.modulate = ColorN(colors[number])
+#	$Sprite.modulate = ColorN(colors[number])
 	$click_detecter.position = position
 
 func click():
@@ -40,8 +38,15 @@ func click():
 			yield(get_tree().create_timer(0.5),"timeout")
 			queue_free()
 
-func set_start_position(pos : Vector2):
-	start_position = pos
+func set_number(num : int):
+	number = num
+	$AnimatedSprite.frame = num
+
+func set_outline(current_fruta):
+	if current_fruta == number:
+		$AnimatedSprite.set_material(load("res://outline_material.tres"))
+	else:
+		$AnimatedSprite.set_material(null)
 
 #func _input(event):
 #	if event is InputEventMouseButton:
@@ -61,7 +66,7 @@ func launch():
 	
 	var new_angle = 180 * float(from_left) - (angle)
 	
-	apply_impulse(Vector2(1,0), polar2cartesian(force, deg2rad(-abs(new_angle))))
+	apply_impulse(Vector2(rand_range(-5,5),rand_range(-5,5)), polar2cartesian(force, deg2rad(-abs(new_angle))))
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/github-integration/scripts/GistItem.gd"
 }, {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://git_api.gdns"
-}, {
 "base": "HBoxContainer",
 "class": "InvitationItem",
 "language": "GDScript",
@@ -37,7 +32,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ContributorClass": "",
 "GistItem": "",
-"GitAPI": "",
 "InvitationItem": "",
 "RepositoryItem": ""
 }
@@ -45,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Touhou_Station_Jam"
-run/main_scene="res://Scenes/juego.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -61,7 +55,7 @@ enabled=PoolStringArray( "res://addons/github-integration/plugin.cfg" )
 
 [gdnative]
 
-singletons=[ "res://git_api.gdnlib" ]
+singletons=[  ]
 
 [input]
 
