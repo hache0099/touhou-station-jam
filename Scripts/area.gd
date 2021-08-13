@@ -27,25 +27,30 @@ func _ready():
 func _physics_process(delta):
 	click_rect.position = position - Vector2(36,38)
 	click()
-	$Label.set_text(str(number))
-#	$Sprite.modulate = ColorN(colors[number])
+	
 	$click_detecter.position = position
 
 func click():
 	if Input.is_action_just_pressed("mouse"):
 		if click_rect.has_point(get_global_mouse_position()):
 			sleeping = true
+			
 			if number == current_number:
 				$CPUParticles2D.set_texture(load("res://star.png"))
 			else:
 				$CPUParticles2D.set_texture(load("res://cross_red.png"))
+			
+			$CPUParticles2D.emitting = true
+			$AnimationPlayer.play("fade")
 			emit_signal("tipo_fruta",number)
+			set_physics_process(false)
 
 func set_number(num : int):
 	number = num
 	$AnimatedSprite.frame = num
 
 func set_outline(current_fruta):
+	current_number = current_fruta
 	if current_fruta == number:
 		$AnimatedSprite.set_material(load("res://outline_material.tres"))
 	else:
@@ -90,3 +95,6 @@ func _on_Timer_timeout():
 #	print("mouse click" + colors[number])
 #	yield(get_tree().create_timer(0.5),"timeout")
 #	queue_free()
+
+func _on_AnimatedSprite_animation_finished():
+	queue_free()
