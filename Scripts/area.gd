@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal tipo_fruta(fruta_)
 
+var current_number : int
 var number : int = 0 setget set_number
 
 var colors = ["red", "green", "blue", "blueviolet", "orange", "yellow", "black"]
@@ -34,9 +35,11 @@ func click():
 	if Input.is_action_just_pressed("mouse"):
 		if click_rect.has_point(get_global_mouse_position()):
 			sleeping = true
+			if number == current_number:
+				$CPUParticles2D.set_texture(load("res://star.png"))
+			else:
+				$CPUParticles2D.set_texture(load("res://cross_red.png"))
 			emit_signal("tipo_fruta",number)
-			yield(get_tree().create_timer(0.5),"timeout")
-			queue_free()
 
 func set_number(num : int):
 	number = num
