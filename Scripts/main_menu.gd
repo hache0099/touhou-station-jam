@@ -9,3 +9,6 @@ func _on_play_pressed():
 
 func _on_options_pressed():
 	$option_window.show()
+
+func _on_Button_pressed():
+	$option_window.hide()
